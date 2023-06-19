@@ -1,6 +1,12 @@
-$(document).ready(function(){
+$(document).ready(function (){
     let time=0;
     let numberOfMoves=0;
+            
+    var imageNumber = 3;
+    setInterval(function() {
+        $("#var2").attr("src", `./images/var${imageNumber}.gif`);
+        if(imageNumber==3) imageNumber=2; 
+        else imageNumber=3 }, 1000);
 
     $(document).ready(function pocetak(){
         mix();
@@ -21,7 +27,7 @@ $(document).ready(function(){
                 check();
                 return false;});
 
-            $(".ikonica1").on('click', () => {
+            $(".help-icon").on('click', () => {
                 $("#popup1").css("display", "flex");});
 
             $("#close").on('click', () => {
@@ -43,8 +49,8 @@ $(document).ready(function(){
 
     function giveColor(div, x) {
         switch(x) {
-                case 0: $(div).addClass("boja1"); break;
-                case 1: $(div).addClass("boja2"); break; } }
+                case 0: $(div).addClass("color1"); break;
+                case 1: $(div).addClass("color2"); break; } }
     
     function rnd() { return Math.round(Math.random()); }
     
@@ -52,15 +58,15 @@ $(document).ready(function(){
         $("#popup2").css("display", "flex"); }
 
     function checkStart() {
-        var blueSquares = $(".boja1").length;
-        var redSquares = $(".boja2").length;
+        var blueSquares = $(".color1").length;
+        var redSquares = $(".color2").length;
         
         if (blueSquares == 9 || redSquares == 9) return "bad";
         else return "good"; }
     
     function check(){  
-        var blueSquares = $(".boja1").length;
-        var redSquares = $(".boja2").length;
+        var blueSquares = $(".color1").length;
+        var redSquares = $(".color2").length;
         
         if (blueSquares == 9 || redSquares == 9) {
             setTimeout(() => { alertEnd(); }, 150);
@@ -71,12 +77,12 @@ $(document).ready(function(){
         $("#moves-value").text(numberOfMoves);}
 
     function changeColor(square) {
-        if ($(square).hasClass("boja1")) {
-            $(square).addClass("boja2");
-            $(square).removeClass("boja1"); }
+        if ($(square).hasClass("color1")) {
+            $(square).addClass("color2");
+            $(square).removeClass("color1"); }
         else {
-            $(square).addClass("boja1");
-            $(square).removeClass("boja2"); } }
+            $(square).addClass("color1");
+            $(square).removeClass("color2"); } }
 
     function getSquares (squareID){    
         var squares = [];
@@ -91,5 +97,3 @@ $(document).ready(function(){
         for(i=0; i<5; i++) {
             changeColor(squares[i]); }; }
 });
-//fix transform issues
-
