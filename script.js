@@ -7,7 +7,12 @@ $(document).ready(function (){
         $("#var2").attr("src", `./images/var${imageNumber}.gif`);
         if(imageNumber==3) imageNumber=2; 
         else imageNumber=3 }, 1000);
-
+    
+	//prevent immediate reload
+	window.addEventListener('beforeunload', (e) => {
+		e.preventDefault();
+		e.returnValue = ''; });
+    
     $(document).ready(function pocetak(){
         mix();
             
